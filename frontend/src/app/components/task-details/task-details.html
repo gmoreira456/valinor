@@ -82,3 +82,25 @@
     </div>
   </div>
 </div>
+
+<!-- Modal de Confirmação de Exclusão -->
+<div class="confirmation-overlay" *ngIf="showDeleteConfirmation" (click)="cancelDelete()">
+  <div class="confirmation-modal" (click)="$event.stopPropagation()">
+    <div class="confirmation-header">
+      <h3>⚠️ Confirmar Exclusão</h3>
+    </div>
+    <div class="confirmation-body">
+      <p>Tem certeza de que deseja excluir esta tarefa?</p>
+      <p><strong>"{{ card?.title }}"</strong></p>
+      <p class="warning-text">Esta ação não pode ser desfeita.</p>
+    </div>
+    <div class="confirmation-actions">
+      <button class="btn btn-danger" (click)="confirmDelete()">
+        🗑️ Sim, Excluir
+      </button>
+      <button class="btn btn-secondary" (click)="cancelDelete()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

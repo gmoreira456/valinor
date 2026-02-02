@@ -14,9 +14,19 @@ export class TaskDetails {
     @Output() deleteRequested = new EventEmitter<string | number>();
 
     onDeleteClick() {
+      this.showDeleteConfirmation = true;
+    }
+
+    confirmDelete() {
       if (this.card) {
         this.deleteRequested.emit(this.card.id);
+        this.showDeleteConfirmation = false;
+        this.close();
       }
+    }
+
+    cancelDelete() {
+      this.showDeleteConfirmation = false;
     }
   @Input() card: Card | null = null;
   @Input() isOpen = false;
@@ -31,6 +41,7 @@ export class TaskDetails {
   ];
 
   selectedStatus: 'backlog' | 'todo' | 'in-progress' | 'done' = 'todo';
+  showDeleteConfirmation = false;
 
   ngOnChanges() {
     if (this.card) {
