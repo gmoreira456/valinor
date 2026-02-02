@@ -42,10 +42,15 @@ export class AddTaskComponent {
       return;
     }
 
-    const selectedDate = new Date(this.cardForm.dueDate);
+    const selectedDateParts = this.cardForm.dueDate.split('-');
+    const selectedDate = new Date(
+      parseInt(selectedDateParts[0]), 
+      parseInt(selectedDateParts[1]) - 1, 
+      parseInt(selectedDateParts[2])
+    );
+    
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    selectedDate.setHours(0, 0, 0, 0);
 
     if (selectedDate < today) {
       alert('A data de entrega não pode ser no passado!');
