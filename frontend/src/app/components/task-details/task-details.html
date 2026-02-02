@@ -7,7 +7,6 @@
 
     <div class="modal-body">
       <div class="task-info-grid">
-        <!-- ID e Status -->
         <div class="info-section">
           <div class="info-row">
             <span class="label">ID:</span>
@@ -29,7 +28,6 @@
           </div>
         </div>
 
-        <!-- Prioridade e Responsável -->
         <div class="info-section">
           <div class="info-row">
             <span class="label">Prioridade:</span>
@@ -46,7 +44,6 @@
           </div>
         </div>
 
-        <!-- Data de Entrega -->
         <div class="info-section full-width">
           <div class="info-row">
             <span class="label">Data de Entrega:</span>
@@ -58,7 +55,6 @@
         </div>
       </div>
 
-      <!-- Descrição -->
       <div class="description-section">
         <h3>Descrição</h3>
         <div class="description-content">
@@ -66,7 +62,6 @@
         </div>
       </div>
 
-      <!-- Ações futuras (para expansão) -->
       <div class="actions-section">
         <div class="action-buttons">
           <button class="btn btn-danger" *ngIf="card" (click)="onDeleteClick()" title="Excluir tarefa">
