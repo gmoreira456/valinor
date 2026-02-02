@@ -1,0 +1,81 @@
+<div class="modal-overlay" *ngIf="isOpen && card" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="task-title">{{ card.title }}</h2>
+      <button class="close-button" (click)="close()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="task-info-grid">
+        <!-- ID e Status -->
+        <div class="info-section">
+          <div class="info-row">
+            <span class="label">ID:</span>
+            <span class="value">#{{ card.id }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Status:</span>
+            <select 
+              class="value status-select"
+              [(ngModel)]="selectedStatus">
+              <option *ngFor="let option of statusOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Prioridade e Responsável -->
+        <div class="info-section">
+          <div class="info-row">
+            <span class="label">Prioridade:</span>
+            <span class="value priority-badge" [ngClass]="getPriorityClass()">
+              {{ getPriorityLabel(card.priority) }}
+            </span>
+          </div>
+          <div class="info-row">
+            <span class="label">Responsável:</span>
+            <span class="value assignee">
+              <span class="assignee-icon">👤</span>
+              {{ card.assignee }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Data de Entrega -->
+        <div class="info-section full-width">
+          <div class="info-row">
+            <span class="label">Data de Entrega:</span>
+            <span class="value due-date">
+              <span class="date-icon">📅</span>
+              {{ formatDate(card.dueDate) }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descrição -->
+      <div class="description-section">
+        <h3>Descrição</h3>
+        <div class="description-content">
+          {{ card.description }}
+        </div>
+      </div>
+
+      <!-- Ações futuras (para expansão) -->
+      <div class="actions-section">
+        <div class="action-buttons">
+          <button class="btn btn-danger" *ngIf="card" (click)="onDeleteClick()" title="Excluir tarefa">
+            🗑️ Excluir
+          </button>
+          <button class="btn btn-primary" [disabled]="!card || selectedStatus === card.status" (click)="confirmStatusChange()">
+            Confirmar
+          </button>
+          <button class="btn btn-secondary" (click)="close()">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

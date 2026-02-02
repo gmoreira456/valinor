@@ -1,0 +1,82 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onCancel()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Nova Tarefa</h3>
+      <button class="close-button" (click)="onCancel()">✕</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #taskFormRef="ngForm">
+      <div class="form-group">
+        <label for="title">Título *</label>
+        <input 
+          type="text" 
+          id="title"
+          name="title"
+          [(ngModel)]="cardForm.title"
+          required
+          placeholder="Digite o título da tarefa"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descrição *</label>
+        <textarea 
+          id="description"
+          name="description"
+          [(ngModel)]="cardForm.description"
+          required
+          placeholder="Descreva a tarefa"
+          rows="3"
+          class="form-textarea"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="assignee">Responsável</label>
+          <input 
+            type="text" 
+            id="assignee"
+            name="assignee"
+            [(ngModel)]="cardForm.assignee"
+            placeholder="Nome do responsável"
+            class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Prioridade</label>
+          <select 
+            id="priority"
+            name="priority"
+            [(ngModel)]="cardForm.priority"
+            class="form-select">
+            <option value="low">Baixa</option>
+            <option value="medium">Média</option>
+            <option value="high">Alta</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">Data de Entrega *</label>
+        <input 
+          type="date" 
+          id="dueDate"
+          name="dueDate"
+          [(ngModel)]="cardForm.dueDate"
+          [min]="getTodayDate()"
+          required
+          class="form-input">
+        <small class="form-hint">A data de entrega deve ser hoje ou futura</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!taskFormRef.valid">
+          Criar Tarefa
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

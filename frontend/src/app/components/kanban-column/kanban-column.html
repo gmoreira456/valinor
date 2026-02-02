@@ -1,0 +1,27 @@
+<div class="kanban-column" [attr.data-column-id]="column.id" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+  <div class="column-header">
+    <h2 class="column-title">{{ column.title }}</h2>
+    <span class="task-count">{{ column.cards.length }}</span>
+  </div>
+  
+  <div class="tasks-container">
+    <app-task-card 
+      *ngFor="let card of column.cards; trackBy: trackByCardId"
+      [card]="card"
+      (cardClicked)="onCardClicked($event)"
+        (deleteRequested)="deleteRequested.emit($event)"
+        >
+    </app-task-card>
+    
+    <div class="add-task-container" *ngIf="column.id === 'backlog' || column.id === 'todo'">
+      <button class="add-task-column-btn" (click)="onAddCard()">
+        <span class="plus-icon">+</span>
+        <span>Adicionar tarefa</span>
+      </button>
+    </div>
+    
+    <div *ngIf="column.cards.length === 0" class="empty-state">
+      <p>Nenhuma tarefa</p>
+    </div>
+  </div>
+</div>

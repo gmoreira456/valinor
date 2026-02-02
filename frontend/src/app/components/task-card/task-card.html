@@ -1,0 +1,19 @@
+<div class="task-card" [ngClass]="getPriorityClass()" [attr.data-status]="card.status" (click)="onClick()" draggable="true" (dragstart)="onDragStart($event)">
+  <div class="task-header">
+    <h3 class="task-title">{{ card.title }}</h3>
+    <span class="priority-badge">{{ card.priority }}</span>
+  </div>
+  
+  <p class="task-description">{{ card.description }}</p>
+  
+  <div class="task-footer">
+    <div class="assignee">
+      <span class="assignee-icon">👤</span>
+      <span class="assignee-name">{{ card.assignee }}</span>
+    </div>
+    <div class="due-date">
+      <span class="date-icon">📅</span>
+      <span class="date">{{ formatDate(card.dueDate) }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="kanban-board">
+  <div class="board-header">
+    <h1>Quadro Kanban</h1>
+    <p class="board-description">Gerencie suas tarefas de forma visual e eficiente</p>
+    <button class="add-task-btn" (click)="openAddCardModal()">
+      <span class="add-icon">+</span>
+      Nova Tarefa
+    </button>
+  </div>
+
+  <div class="board-container">
+    <app-kanban-column 
+      *ngFor="let column of columns(); trackBy: trackByColumnId"
+      [column]="column"
+      (addCard)="openAddCardModal($event)"
+      (cardClicked)="onCardClicked($event)"
+      (cardDropped)="onCardDropped($event)">
+        (deleteRequested)="onDeleteRequested($event)">
+    </app-kanban-column>
+  </div>
+
+  <app-add-task
+    [isOpen]="isAddCardModalOpen"
+    [columnId]="selectedColumn"
+    (cardCreated)="onCardCreated($event)"
+    (closed)="closeAddCardModal()">
+  </app-add-task>
+
+  <app-task-details
+    [isOpen]="isCardDetailsModalOpen"
+    [card]="selectedCard"
+    (closed)="closeCardDetailsModal()"
+    (statusChanged)="onStatusChanged($event)"
+    (deleteRequested)="onDeleteRequested($event)">
+  </app-task-details>
+  <app-toast [message]="toastMessage" [type]="toastType" [visible]="toastVisible"></app-toast>
+</div>
