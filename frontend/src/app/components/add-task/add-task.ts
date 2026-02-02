@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Card } from '../../models/task.model';
@@ -10,7 +10,7 @@ import { Card } from '../../models/task.model';
   templateUrl: './add-task.html',
   styleUrl: './add-task.css'
 })
-export class AddTaskComponent {
+export class AddTaskComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
   @Input() columnId: string = 'todo';
   @Output() cardCreated = new EventEmitter<Omit<Card, 'id'>>();
@@ -26,10 +26,18 @@ export class AddTaskComponent {
   };
 
   ngOnInit() {
-    this.cardForm.status = this.columnId as any;
+    this.updateStatusFromColumnId();
     if (!this.cardForm.dueDate) {
       this.cardForm.dueDate = this.getTodayDate();
     }
+  }
+
+  ngOnChanges() {
+    this.updateStatusFromColumnId();
+  }
+
+  private updateStatusFromColumnId() {
+    this.cardForm.status = this.columnId as any;
   }
 
   getTodayDate(): string {
