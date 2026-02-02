@@ -37,6 +37,12 @@ export class TaskCardComponent {
   }
 
   onDragStart(event: DragEvent) {
+    // Impedir drag & drop de cards finalizados
+    if (this.card.status === 'done') {
+      event.preventDefault();
+      return;
+    }
+    
     event.dataTransfer?.setData('text/plain', this.card.id.toString());
     this.dragStarted.emit(this.card.id);
   }

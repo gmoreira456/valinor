@@ -168,6 +168,24 @@
   border-color: #667eea;
 }
 
+.status-readonly {
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6c757d;
+  min-width: 140px;
+}
+
+.done-status {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-color: #28a745;
+  color: #155724;
+  font-weight: 600;
+}
+
 .status-badge {
   padding: 4px 10px;
   border-radius: 20px;

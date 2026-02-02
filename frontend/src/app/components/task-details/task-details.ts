@@ -38,6 +38,10 @@ export class TaskDetails {
     }
   }
 
+  isStatusEditable(): boolean {
+    return this.card?.status !== 'done';
+  }
+
   confirmStatusChange() {
     if (this.card && this.selectedStatus !== this.card.status) {
       this.statusChanged.emit({

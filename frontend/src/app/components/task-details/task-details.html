@@ -16,12 +16,16 @@
           <div class="info-row">
             <span class="label">Status:</span>
             <select 
+              *ngIf="isStatusEditable()"
               class="value status-select"
               [(ngModel)]="selectedStatus">
               <option *ngFor="let option of statusOptions" [value]="option.value">
                 {{ option.label }}
               </option>
             </select>
+            <span *ngIf="!isStatusEditable()" class="value status-readonly done-status">
+              ✅ Done (Finalizado)
+            </span>
           </div>
         </div>
 
@@ -68,7 +72,11 @@
           <button class="btn btn-danger" *ngIf="card" (click)="onDeleteClick()" title="Excluir tarefa">
             🗑️ Excluir
           </button>
-          <button class="btn btn-primary" [disabled]="!card || selectedStatus === card.status" (click)="confirmStatusChange()">
+          <button 
+            class="btn btn-primary" 
+            *ngIf="isStatusEditable()"
+            [disabled]="!card || selectedStatus === card.status" 
+            (click)="confirmStatusChange()">
             Confirmar
           </button>
           <button class="btn btn-secondary" (click)="close()">

@@ -1,4 +1,4 @@
-<div class="task-card" [ngClass]="getPriorityClass()" [attr.data-status]="card.status" (click)="onClick()" draggable="true" (dragstart)="onDragStart($event)">
+<div class="task-card" [ngClass]="getPriorityClass()" [attr.data-status]="card.status" (click)="onClick()" [attr.draggable]="card.status !== 'done'" (dragstart)="onDragStart($event)">
   <div class="task-header">
     <h3 class="task-title">{{ card.title }}</h3>
     <span class="priority-badge">{{ card.priority }}</span>
