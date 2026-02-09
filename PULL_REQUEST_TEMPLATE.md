@@ -67,11 +67,6 @@ O projeto foi desenvolvido utilizando uma arquitetura full-stack moderna:
 - ✅ Drag and drop funcional
 - ✅ Interface responsiva
 
-**Vídeo de apresentação**
-
-[Em desenvolvimento - Link será adicionado aqui]
-<!-- Dica: você pode usar o https://jam.dev/ para facilitar sua gravação ;) -->
-
 **Sobre você**
 
 Gabriel - Desenvolvedor Front-end apaixonado por tecnologia e inovação. 
