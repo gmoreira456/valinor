@@ -67,6 +67,11 @@ O projeto foi desenvolvido utilizando uma arquitetura full-stack moderna:
 - ✅ Drag and drop funcional
 - ✅ Interface responsiva
 
+
+**Vídeo de apresentação**
+
+https://youtu.be/rOZgmvG9WGQ
+
 **Sobre você**
 
 Gabriel - Desenvolvedor Front-end apaixonado por tecnologia e inovação. 
